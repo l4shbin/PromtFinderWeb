@@ -16,7 +16,6 @@
             overflow: hidden;
             background-color: #ffffff;
         }
-        /* Kontainer dipotong bagian bawahnya menggunakan clip-path agar logo Lovable benar-benar hilang */
         .iframe-container {
             position: relative;
             width: 100%;
@@ -28,17 +27,16 @@
             top: 0;
             left: 0;
             width: 100%;
-            /* Membuat tinggi iframe sedikit melebihi layar bawah untuk menyembunyikan watermark */
-            height: calc(100% + 55px); 
+            /* Jarak 75px ditambahkan agar logo Lovable di bagian bawah terdorong keluar layar HP */
+            height: calc(100% + 75px);
             border: none;
         }
-        /* Lapisan pelindung transparan di area bawah agar logo tidak bisa diklik */
         .overlay-hide {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 55px;
+            height: 75px;
             background: transparent;
             z-index: 9999;
             pointer-events: none;
