@@ -2,53 +2,69 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PromtFinderWeb</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { 
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; 
+            background-color: #000; 
         }
-        body, html {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: #ffffff;
-        }
-        .iframe-container {
+        .app-view {
             position: relative;
             width: 100%;
             height: 100%;
             overflow: hidden;
         }
-        iframe {
+        #app-frame {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            /* Jarak 75px ditambahkan agar logo Lovable di bagian bawah terdorong keluar layar HP */
-            height: calc(100% + 75px);
+            height: calc(100% + 90px); 
             border: none;
+            display: none;
+            background: #fff;
         }
-        .overlay-hide {
+        .ui-shield {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 75px;
+            height: 90px;
             background: transparent;
-            z-index: 9999;
+            z-index: 10000;
             pointer-events: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="iframe-container">
-        <iframe src="https://id-preview--3de74b59-8923-44bb-a9a4-249c47a001a0.lovable.app/?__lovable_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9%2EeyJ1c2VyX2lkIjoiYVZqdGV2U1loNVc2ejFORWdaTlE4QzMzTEF4MiIsInByb2plY3RfaWQiOiIzZGU3NGI1OS04OTIzLTQ0YmItYTlhNC0yNDljNDdhMDAxYTAiLCJhY2Nlc3NfdHlwZSI6InByb2plY3QiLCJpc3MiOiJsb3ZhYmxlLWFwaSIsInN1YiI6IjNkZTc0YjU5LTg5MjMtNDRiYi1hOWE0LTI0OWM0N2EwMDFhMCIsImF1ZCI6WyJsb3ZhYmxlLWFwcCJdLCJleHAiOjE3ODExODQxMjIsIm5iZiI6MTc4MDU3OTMyMiwiaWF0IjoxNzgwNTc5MzIyfQ%2ElN6iKWpcjQ1gIjoWraL_Oe4xMNGXG2cO4bHaWjWSXQJ-BnYnrDPgxK5oek7rbLgY4Vx8_6b3E48pvZFYIRqhXkgWF7YNEAl0x4UWrvjgNPQNaqCDPhOgDvUpyprXaldzEk6woTKN6Vb1uzmWGmhZDKPyl8615EO1QMcn_qUCbVCPS9tClgaheg5oeAcsYdjhbImsQE3FGkCo28ki_IfABGkinp-1p1AgWa0abarSS5YRpjMDHFc4gztuf0fp59-gMbUNKz-Sa1WLocOB7EfM0KNxS8qpQ1YWmgZMXD5oW8XAnwDfWp6--k7Pm-EEfemAlFMmKzOG8Wt9CEN5CLd5yV-RHrDbbp1TknyeUeLzkDQGYYen8sTCbawa7o4bphIskTf2eXCN2kfj-MO2uwcYkl2lU7TvNEc63U3Ee_PsIAH86PgGxZwCwS03kCtZq8vicb0idXsGka-S6_fQUFJRAz386O6NHjxe5OO8oytY6q0HqZKuMTC6sOJRPBk4z_wL-Tnx1yIDWqwttPHPoI5HEcInor9PaUYr0Ojge58XJ_nWEJUASrClatmFGob4-eCWHMDxZf9eIWldfvXpPPALL3mS9QkafC98iVeCeLn712hNAU12Pjbe8J8rhMrbft-9sooohg9jxDWEzJxim7Qs9PZb-V2jPRmfYYZCPlQecUk" allowfullscreen></iframe>
-        <div class="overlay-hide"></div>
+    <div class="app-view">
+        <iframe id="app-frame" allowfullscreen allow="geolocation; microphone; camera"></iframe>
+        <div class="ui-shield"></div>
     </div>
 
+    <script>
+        (function() {
+            const _enc = "aHR0cHM6Ly9pZC1wcmV2aWV3LS0zZGU3NGI1OS04OTIzLTQ0YmItYTlhNC0yNDljNDdhMDAxYTAubG92YWJsZS5hcHAvP19fbG92YWJsZV90b2tlbj1leUpoYkdjaU9pSlNVelkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKMWMyVnlYMmxrSWpvaVFWWnFkR1YyVTFsb05WYzJlMU5GYTI1VVE4UXpNMDFXUVhneUlubHliV3BsWTNSZlptUmxJan9pTXpSbE56UmlaVFU1T0RreU16UTBOR0ppTFRFeE5XUXRPRGt4TlMweU5EOWpORGRoTURBeE1UQWlMQ0poWTJObGMzTmZkSEx3WlNJNkluQnliMnpsWTNRaUxDSnBjeUlpT2lKc2IzWmhibXhzWlY5aGNDSXNJblIxWWlJNklqTmtZVzR6TkdJMU9TMDROREpqTFRRMFlXSTRZVGxrTkMweU5EOWpORGRoTURBeE1UQWlMQ0p6ZFdJaU9pSXpabVUzTkdJM05Ua3RPVGt5TXkweU5EUmdaVGxtWkRFdE1qUTVZMlEwTnpnd01ERmhNQ0lzSW1GMVpDSTZXYXNreTNKbVlXSnSaUzFoY0hBaWZTMTdlWEFpT2pFM09ERXhPRFF4TWpJeExDSnVZbVlpT2pFM09ETTFOemt6TWpJeExDSnBZWFFpT2pFM09ETTFOemt6TWpJZmZRJTJFdU42aUtXcGNqUTVnSWpvV3JhTF9PZTR4TU5HWEcyY080YkhhV2pXU1hRSitCblluckRQZ3hLNW9lazdyYkxnRzRWeDhfNmIzRTQ4cHZaRllJUmtoWGtnV0Y3WU5FQUwweDRVV3J2amdOUFFOYXFDRFBoT2dEdlVweXByWGFsZHpFazZ3b1RLTjZWYjF1em1XR21oWkRLUHlsODYxNUVPMVFNY25fcVVDQlZDUFM5dENsZ2FoZWc1b2VBY3NZZGpoYkltc1VFM0ZHa0NvMjhraV9JZkFCR2tpbnAtMXAxQWdXYTByYWJhc1NTNVlScGpNRUhGYzRnenR1ZjBmcDU5LWdNYlVOS3otU2ExV0xvY09CN0VmTTAKTnhTOHFwUTFZV21nWk1YRDVvVzhYQW53RGZXcDYtLWs3UG0tRUVmZW1BTEZNbUt6T0c4V3Q5Q0VONUNMZDV5Vi1SSHJEYmJwMVRrbnllVWVMemtEUUdaWWVuOHNUQ2Jhd2E3bzRicGhJc2tUZjJlWkNOMmtmai1NTzJ1d2NZa2wybFU3VHZORWM2M1VFRWVfUHNJQUg4NlBnR3ha d0N3UzAzZ0N0WnE4dmljYjBpZFhzR2thLVM2X2ZRVUZKUkF6Mzg2TzZOSmp4ZTVPTzhveXRZNnEwSHFaS3VNVEM2c09KUlBCazR6X3dMLVRueDF5SURYcXd0dFBIUG9JNUhFY0lub3I5UGFVWXJ3T2pnZTU4WEpfbldFSlVBU3JDbGF0bUZHb2I0LWVDV0hNRHhaZjllSVdsZGZ2WHBQUEFMTDNtUzlRa2FmQzlhaVZlQ2VMbjcxMmhOQVUxMlBqYmU4SjhyaE1yYmZ0LTlzb29vaGc5anhEV0V6SnhpbTdRczlQWmItVjJqUFJtZllaQ1BsUWVjVWs=";
+            const f = document.getElementById('app-frame');
+            if (window.self !== window.top) window.top.location = window.self.location;
+            try {
+                f.src = atob(_enc);
+                f.style.display = 'block';
+            } catch (e) {}
+            document.addEventListener('contextmenu', event => event.preventDefault());
+            document.onkeydown = function(e) {
+                if(e.keyCode == 123) return false;
+                if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+                if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+                if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+                if(e.ctrlKey && e.uKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            }
+        })();
+    </script>
 </body>
 </html>
