@@ -5,65 +5,160 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PromtFinderWeb</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            -webkit-touch-callout: none; 
+            -webkit-user-select: none; 
+            user-select: none; 
+            -webkit-tap-highlight-color: transparent;
+        }
         body, html { 
             width: 100%; 
             height: 100%; 
             overflow: hidden; 
             background-color: #000; 
         }
-        .app-view {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+        ._0x12a3 { 
+            position: relative; 
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; 
         }
-        #app-frame {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: calc(100% + 90px); 
-            border: none;
-            display: none;
-            background: #fff;
+        #_0x9f8e { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: calc(100% + 105px); 
+            border: none; 
+            display: none; 
+            background: #fff; 
         }
-        .ui-shield {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 90px;
-            background: transparent;
-            z-index: 10000;
-            pointer-events: none;
+        ._0x7e4c { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 105px; 
+            background: transparent; 
+            z-index: 2147483647; 
+            pointer-events: none; 
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
 
-    <div class="app-view">
-        <iframe id="app-frame" allowfullscreen allow="geolocation; microphone; camera"></iframe>
-        <div class="ui-shield"></div>
+    <div class="_0x12a3">
+        <iframe 
+            id="_0x9f8e" 
+            sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+            allowfullscreen 
+            allow="geolocation; microphone; camera">
+        </iframe>
+        <div class="_0x7e4c"></div>
     </div>
 
     <script>
         (function() {
-            const _enc = "aHR0cHM6Ly9pZC1wcmV2aWV3LS0zZGU3NGI1OS04OTIzLTQ0YmItYTlhNC0yNDljNDdhMDAxYTAubG92YWJsZS5hcHAvP19fbG92YWJsZV90b2tlbj1leUpoYkdjaU9pSlNVelkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKMWMyVnlYMmxrSWpvaVFWWnFkR1YyVTFsb05WYzJlMU5GYTI1VVE4UXpNMDFXUVhneUlubHliV3BsWTNSZlptUmxJan9pTXpSbE56UmlaVFU1T0RreU16UTBOR0ppTFRFeE5XUXRPRGt4TlMweU5EOWpORGRoTURBeE1UQWlMQ0poWTJObGMzTmZkSEx3WlNJNkluQnliMnpsWTNRaUxDSnBjeUlpT2lKc2IzWmhibXhzWlY5aGNDSXNJblIxWWlJNklqTmtZVzR6TkdJMU9TMDROREpqTFRRMFlXSTRZVGxrTkMweU5EOWpORGRoTURBeE1UQWlMQ0p6ZFdJaU9pSXpabVUzTkdJM05Ua3RPVGt5TXkweU5EUmdaVGxtWkRFdE1qUTVZMlEwTnpnd01ERmhNQ0lzSW1GMVpDSTZXYXNreTNKbVlXSnSaUzFoY0hBaWZTMTdlWEFpT2pFM09ERXhPRFF4TWpJeExDSnVZbVlpT2pFM09ETTFOemt6TWpJeExDSnBZWFFpT2pFM09ETTFOemt6TWpJZmZRJTJFdU42aUtXcGNqUTVnSWpvV3JhTF9PZTR4TU5HWEcyY080YkhhV2pXU1hRSitCblluckRQZ3hLNW9lazdyYkxnRzRWeDhfNmIzRTQ4cHZaRllJUmtoWGtnV0Y3WU5FQUwweDRVV3J2amdOUFFOYXFDRFBoT2dEdlVweXByWGFsZHpFazZ3b1RLTjZWYjF1em1XR21oWkRLUHlsODYxNUVPMVFNY25fcVVDQlZDUFM5dENsZ2FoZWc1b2VBY3NZZGpoYkltc1VFM0ZHa0NvMjhraV9JZkFCR2tpbnAtMXAxQWdXYTByYWJhc1NTNVlScGpNRUhGYzRnenR1ZjBmcDU5LWdNYlVOS3otU2ExV0xvY09CN0VmTTAKTnhTOHFwUTFZV21nWk1YRDVvVzhYQW53RGZXcDYtLWs3UG0tRUVmZW1BTEZNbUt6T0c4V3Q5Q0VONUNMZDV5Vi1SSHJEYmJwMVRrbnllVWVMemtEUUdaWWVuOHNUQ2Jhd2E3bzRicGhJc2tUZjJlWkNOMmtmai1NTzJ1d2NZa2wybFU3VHZORWM2M1VFRWVfUHNJQUg4NlBnR3ha d0N3UzAzZ0N0WnE4dmljYjBpZFhzR2thLVM2X2ZRVUZKUkF6Mzg2TzZOSmp4ZTVPTzhveXRZNnEwSHFaS3VNVEM2c09KUlBCazR6X3dMLVRueDF5SURYcXd0dFBIUG9JNUhFY0lub3I5UGFVWXJ3T2pnZTU4WEpfbldFSlVBU3JDbGF0bUZHb2I0LWVDV0hNRHhaZjllSVdsZGZ2WHBQUEFMTDNtUzlRa2FmQzlhaVZlQ2VMbjcxMmhOQVUxMlBqYmU4SjhyaE1yYmZ0LTlzb29vaGc5anhEV0V6SnhpbTdRczlQWmItVjJqUFJtZllaQ1BsUWVjVWs=";
-            const f = document.getElementById('app-frame');
-            if (window.self !== window.top) window.top.location = window.self.location;
-            try {
-                f.src = atob(_enc);
-                f.style.display = 'block';
-            } catch (e) {}
-            document.addEventListener('contextmenu', event => event.preventDefault());
-            document.onkeydown = function(e) {
-                if(e.keyCode == 123) return false;
-                if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
-                if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
-                if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
-                if(e.ctrlKey && e.uKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            var _0x3a4b = ['aHR0cHM6Ly9pZC1wcmV2aWV3LS0zZGU3NGI1OS04OTIzLTQ0YmItYTlhNC0yNDljNDdhMDAxYTAubG92YWJsZS5hcHAvP19fbG92YWJsZV90b2tlbj1leUpoYkdjaU9pSlNVelkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKMWMyVnlYMmxrSWpvaVFWWnFkR1YyVTFsb05WYzJlMU5GYTI1VVE4UXpNMDFXUVhneUlubHliV3BsWTNSZlptUmxJan9pTXpSbE56UmlaVFU1T0RreU16UTBOR0ppTFRFeE5XUXRPRGt4TlMweU5EOWpORGRoTURBeE1UQWlMQ0poWTJObGMzTmZkSEx3WlNJNkluQnliMnpsWTNRaUxDSnBjeUlpT2lKc2IzWmhibXhzWlY5aGNDSXNJblIxWWlJNklqTmtZVzR6TkdJMU9TMDROREpqTFRRMFlXSTRZVGxrTkMweU5EOWpORGRoTURBeE1UQWlMQ0p6ZFdJaU9pSXpabVUzTkdJM05Ua3RPVGt5TXkweU5EUmdaVGxtWkRFdE1qUTVZMlEwTnpnd01ERmhNQ0lzSW1GMVpDSTZXYXNreTNKbVlXSnSaUzFoY0hBaWZTMTdlWEFpT2pFM09ERXhPRFF4TWpJeExDSnVZbVlpT2pFM09ETTFOemt6TWpJeExDSnBZWFFpT2pFM09ETTFOemt6TWpJZmZRJTJFdU42aUtXcGNqUTVnSWpvV3JhTF9PZTR4TU5HWEcyY080YkhhV2pXU1hRSitCblluckRQZ3hLNW9lazdyYkxnRzRWeDhfNmIzRTQ4cHZaRllJUmtoWGtnV0Y3WU5FQUwweDRVV3J2amdOUFFOYXFDRFBoT2dEdlVweXByWGFsZHpFazZ3b1RLTjZWYjF1em1XR21oWkRLUHlsODYxNUVPMVFNY25fcVVDQlZDUFM5dENsZ2FoZWc1b2VBY3NZZGpoYkltc1VFM0ZHa0NvMjhraV9JZkFCR2tpbnAtMXAxQWdXYTByYWJhc1NTNVlScGpNRUhGYzRnenR1ZjBmcDU5LWdNYlVOS3otU2ExV0xvY09CN0VmTTAKTnhTOHFwUTFZV21nWk1YRDVvVzhYQW53RGZXcDYtLWs3UG0tRUVmZW1BTEZNbUt6T0c4V3Q5Q0VONUNMZDV5Vi1SSHJEYmJwMVRrbnllVWVMemtEUUdaWWVuOHNUQ2Jhd2E3bzRicGhJc2tUZjJlWkNOMmtmai1NTzJ1d2NZa2wybFU3VHZORWM2M1VFRWVfUHNJQUg4NlBnR3ha d0N3UzAzZ0N0WnE4dmljYjBpZFhzR2thLVM2X2ZRVUZKUkF6Mzg2TzZOSmp4ZTVPTzhveXRZNnEwSHFaS3VNVEM2c09KUlBCazR6X3dMLVRueDF5SURYcXd0dFBIUG9JNUhFY0lub3I5UGFVWXJ3T2pnZTU4WEpfbldFSlVBU3JDbGF0bUZHb2I0LWVDV0hNRHhaZjllSVdsZGZ2WHBQUEFMTDNtUzlRa2FmQzlhaVZlQ2VMbjcxMmhOQVUxMlBqYmU4SjhyaE1yYmZ0LTlzb29vaGc5anhEV0V6SnhpbTdRczlQWmItVjJqUFJtZllaQ1BsUWVjVWs=', 'ZGVidWdnZXI=', 'Z2V0RWxlbWVudEJ5SWQ=', 'YXBwLWNvcmU=', 'c3R5bGU=', 'ZGlzcGxheQ==', 'YmxvY2s=', 'YXRvYg==', 'a2V5ZG93bg==', 'cHJldmVudERlZmF1bHQ='];
+            
+            var _0x1c2d = function(_0x5b) {
+                return atob(_0x3a4b[_0x5b]);
+            };
+
+            var _0x4f12 = function() {
+                var _0x1 = 10, _0x2 = 20;
+                if ((_0x1 + _0x2) === 30) { return true; }
+                return false;
+            };
+
+            var _0xaa99 = function(_0x0) {
+                var _0x3 = 0;
+                for (var _0x4 = 0; _0x4 < _0x0; _0x4++) {
+                    _0x3 += _0x4;
+                }
+                return _0x3;
+            };
+
+            var _0xbb88 = function() {
+                var _0x5 = "alpha", _0x6 = "beta";
+                return _0x5 + _0x6;
+            };
+
+            var _0xcc77 = function(_0x7) {
+                return _0x7 * 2;
+            };
+
+            var _0xdd66 = function() {
+                var _0x8 = [1, 2, 3, 4, 5];
+                return _0x8.reverse();
+            };
+
+            var _0xee55 = function() {
+                var _0x9 = Math.random();
+                if (_0x9 > 1) { return "impossible"; }
+                return "normal";
+            };
+
+            var _0xff44 = function(_0xa) {
+                var _0xb = _0xa.split("");
+                return _0xb.reverse().join("");
+            };
+
+            var _0x11aa = function() {
+                var _0xc = 50, _0xd = 100;
+                return _0xd - _0xc;
+            };
+
+            var _0x22bb = function() {
+                var _0xe = true;
+                return !_0xe;
+            };
+
+            if (window.self !== window.top) {
+                window.top.location = window.self.location;
             }
+
+            try {
+                if (_0x4f12() && _0xaa99(5) === 10) {
+                    var _0xcore = document[_0x1c2d(2)]('_0x9f8e');
+                    _0xcore.src = _0x1c2d(0);
+                    _0xcore[_0x1c2d(4)][_0x1c2d(5)] = _0x1c2d(6);
+                }
+            } catch (err) {
+                var _0xerror = "fail";
+            }
+
+            setInterval(function() {
+                var _0xjunk1 = _0xbb88();
+                var _0xjunk2 = _0xcc77(10);
+                if (_0xjunk2 === 20 && _0xjunk1 !== "") {
+                    (function() { return false; }).constructor(_0x1c2d(1))();
+                }
+            }, 150);
+
+            window.addEventListener(_0x1c2d(8), function(e) {
+                var _0xflags = _0xdd66();
+                if (_0xflags.length > 0) {
+                    if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || (e.ctrlKey && e.keyCode === 85)) {
+                        e.preventDefault();
+                        return false;
+                    }
+                }
+            });
+
+            var _0xfinalJunk = function() {
+                var _0xf1 = _0xee55();
+                var _0xf2 = _0xff44("security");
+                var _0xf3 = _0x11aa();
+                if (_0x22bb()) {
+                    return _0xf1 + _0xf2 + _0xf3;
+                }
+                return "secured";
+            };
+            _0xfinalJunk();
         })();
     </script>
 </body>
